@@ -44,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, ListActivity.class);
         startActivity(intent);
-        Toast.makeText(MainActivity.this,"登陆成功", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this , "登录成功" , Toast.LENGTH_SHORT).show();
         finish();
     }
 
     // 自动登录的检测
     public void checkInfo() {
         // Context.MODE_PRIVATE : 私有文件，只有应用本身能访问
-        SharedPreferences preferences = getSharedPreferences("login_info", Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("login_info" , Context.MODE_PRIVATE);
         String name = preferences.getString("name", "");
         String pwd = preferences.getString("pwd", "");
         if (name.equals(this.NAME)&&pwd.equals(this.PWD)) {
@@ -61,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
     // 登陆成功时数据保存
     public void saveInfo() {
-        SharedPreferences preferences = getSharedPreferences("login_info",Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("login_info" , Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("name",NAME);
-        editor.putString("pwd",PWD);
+        editor.putString("name" , NAME);
+        editor.putString("pwd" , PWD);
         editor.commit();
     }
 }
