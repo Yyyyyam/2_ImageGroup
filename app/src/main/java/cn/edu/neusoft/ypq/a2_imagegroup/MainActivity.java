@@ -15,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
     // 用户名和密码
     public static final String NAME = "yanpeiqi";
     public static final String PWD = "123456";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_PWD = "123456";
+    public static final String PREFERENCE_NAME = "login_info";
+
 
     // 登陆检测、视图绑定和点击事件的触发
     @Override
@@ -51,20 +55,20 @@ public class MainActivity extends AppCompatActivity {
     // 自动登录的检测
     public void checkInfo() {
         // Context.MODE_PRIVATE : 私有文件，只有应用本身能访问
-        SharedPreferences preferences = getSharedPreferences("login_info" , Context.MODE_PRIVATE);
-        String name = preferences.getString("name", "");
-        String pwd = preferences.getString("pwd", "");
-        if (name.equals(this.NAME)&&pwd.equals(this.PWD)) {
+        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME , Context.MODE_PRIVATE);
+        String name = preferences.getString(KEY_NAME, "");
+        String pwd = preferences.getString(KEY_PWD, "");
+        if (name.equals(NAME) && pwd.equals(PWD)) {
             toListActivity();
         }
     }
 
     // 登陆成功时数据保存
     public void saveInfo() {
-        SharedPreferences preferences = getSharedPreferences("login_info" , Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME , Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("name" , NAME);
-        editor.putString("pwd" , PWD);
+        editor.putString(KEY_NAME , NAME);
+        editor.putString(KEY_PWD , PWD);
         editor.commit();
     }
 }
